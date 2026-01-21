@@ -271,7 +271,7 @@
                         </p>
                     </div>
 
-                    <div class="glass-card rounded-2xl p-6">
+                    <!-- <div class="glass-card rounded-2xl p-6">
                         <h3 class="text-xl font-bold text-white mb-4">
                             <i class="fas fa-info-circle text-blue-400 mr-2"></i>
                             How It Works
@@ -319,7 +319,7 @@
                                 <span><strong>High Quality:</strong> Download in full resolution</span>
                             </li>
                         </ul>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
