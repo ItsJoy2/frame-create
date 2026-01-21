@@ -435,6 +435,20 @@ nameInput.addEventListener('input', ()=>{
     }
 });
 
+
+
+/* ================= BUTTON STATE ================= */
+function updateButtonState() {
+    const hasPhoto = !!uploadedImage;
+    const hasName = nameInput.value.trim().length > 0;
+    const hasBranch = branchSelect.value.trim().length > 0;
+    const enable = hasPhoto && hasName && hasBranch;
+
+    downloadBtn.disabled = !enable;
+    resetBtn.disabled = !enable;
+    shareBtn.disabled = !enable;
+}
+
 /* ================= Branch LIVE PREVIEW ================= */
 branchSelect.addEventListener('change', () => {
     const branchName = branchSelect.value.trim();
@@ -444,8 +458,30 @@ branchSelect.addEventListener('change', () => {
     } else {
         branchOverlay.style.display = 'none';
     }
+        updateButtonState();
 });
 
+/* ================= NAME LIVE PREVIEW ================= */
+nameInput.addEventListener('input', () => {
+    let value = nameInput.value;
+
+    // correct character count (বাংলা সহ)
+    if (getCharCount(value) > MAX_NAME_LENGTH) {
+        value = trimToMaxChars(value, MAX_NAME_LENGTH);
+        nameInput.value = value;
+        showNotification('নাম সর্বোচ্চ 18 অক্ষরের হতে পারবে', 'info');
+    }
+
+    value = value.trim();
+
+    if (value) {
+        nameOverlay.textContent = value;
+        nameOverlay.style.display = 'block';
+    } else {
+        nameOverlay.style.display = 'none';
+    }
+    updateButtonState();
+});
 
 /* ================= IMAGE UPLOAD ================= */
 function handleFileUpload(file){
@@ -465,25 +501,14 @@ function handleFileUpload(file){
             userPhoto.src = uploadedImage.src;
             userPhoto.style.display='block';
             placeholder.style.display='none';
-            enableButtons();
             showNotification('Photo loaded');
+            updateButtonState();
         };
         uploadedImage.src = e.target.result;
     };
     reader.readAsDataURL(file);
 }
 
-/* ================= BUTTON STATES ================= */
-function enableButtons(){
-    downloadBtn.disabled=false;
-    resetBtn.disabled=false;
-    shareBtn.disabled=false;
-}
-function disableButtons(){
-    downloadBtn.disabled=true;
-    resetBtn.disabled=true;
-    shareBtn.disabled=true;
-}
 
 /* ================= RESET ================= */
 function resetApplication(){
@@ -494,7 +519,7 @@ function resetApplication(){
     nameInput.value='';
     nameOverlay.style.display='none';
     fileInput.value='';
-    disableButtons();
+    updateButtonState();
     showNotification('Reset done','info');
 }
 
@@ -629,26 +654,6 @@ function trimToMaxChars(str, max) {
         .map(seg => seg.segment)
         .join('');
 }
-
-nameInput.addEventListener('input', () => {
-    let value = nameInput.value;
-
-    // correct character count (বাংলা সহ)
-    if (getCharCount(value) > MAX_NAME_LENGTH) {
-        value = trimToMaxChars(value, MAX_NAME_LENGTH);
-        nameInput.value = value;
-        showNotification('নাম সর্বোচ্চ 18 অক্ষরের হতে পারবে', 'info');
-    }
-
-    value = value.trim();
-
-    if (value) {
-        nameOverlay.textContent = value;
-        nameOverlay.style.display = 'block';
-    } else {
-        nameOverlay.style.display = 'none';
-    }
-});
 
 </script>
 

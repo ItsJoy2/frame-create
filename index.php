@@ -338,7 +338,7 @@ const FRAME_URL = '/frame.png';
 const CANVAS_WIDTH = 600;
 const CANVAS_HEIGHT = 600;
 
-const MAX_NAME_LENGTH = 20;
+const MAX_NAME_LENGTH = 19;
 // বাংলা / emoji / English correct character count
 const segmenter = new Intl.Segmenter('bn', { granularity: 'grapheme' });
 
@@ -411,6 +411,17 @@ nameInput.addEventListener('input', ()=>{
     }
 });
 
+/* ================= BUTTON STATE ================= */
+function updateButtonState() {
+    const hasPhoto = !!uploadedImage;
+    const hasName = nameInput.value.trim().length > 0;
+    const enable = hasPhoto && hasName;
+
+    downloadBtn.disabled = !enable;
+    resetBtn.disabled = !enable;
+    shareBtn.disabled = !enable;
+}
+
 /* ================= IMAGE UPLOAD ================= */
 function handleFileUpload(file){
     if(!file || !file.type.startsWith('image/')){
@@ -431,23 +442,13 @@ function handleFileUpload(file){
             placeholder.style.display='none';
             enableButtons();
             showNotification('Photo loaded');
+            updateButtonState();
         };
         uploadedImage.src = e.target.result;
     };
     reader.readAsDataURL(file);
 }
 
-/* ================= BUTTON STATES ================= */
-function enableButtons(){
-    downloadBtn.disabled=false;
-    resetBtn.disabled=false;
-    shareBtn.disabled=false;
-}
-function disableButtons(){
-    downloadBtn.disabled=true;
-    resetBtn.disabled=true;
-    shareBtn.disabled=true;
-}
 
 /* ================= RESET ================= */
 function resetApplication(){
@@ -458,7 +459,7 @@ function resetApplication(){
     nameInput.value='';
     nameOverlay.style.display='none';
     fileInput.value='';
-    disableButtons();
+    updateButtonState();
     showNotification('Reset done','info');
 }
 
@@ -597,6 +598,7 @@ nameInput.addEventListener('input', () => {
     } else {
         nameOverlay.style.display = 'none';
     }
+    updateButtonState();
 });
 
 </script>
