@@ -356,8 +356,8 @@
 <script>
 /* ================= CONFIG ================= */
 const FRAME_URL = '/it-school.png';
-const CANVAS_WIDTH = 600;
-const CANVAS_HEIGHT = 600;
+const CANVAS_WIDTH = 1600;
+const CANVAS_HEIGHT = 1600;
 
 const MAX_NAME_LENGTH = 20;
 // বাংলা / emoji / English correct character count
@@ -584,23 +584,23 @@ async function createFramedImage(){
             : '';
 
     if(name){
-        ctx.font = '700 28px Inter';
+        ctx.font = '700 75px Inter';
         ctx.fillStyle = '#ffffff';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'bottom';
         ctx.shadowColor = 'rgba(0,0,0,0.6)';
         ctx.shadowBlur = 8;
-        ctx.fillText(name, canvas.width / 2, canvas.height - 80);
+        ctx.fillText(name, canvas.width / 2, canvas.height * 0.86);
         ctx.shadowBlur = 0;
     }
     if(branchName){
-        ctx.font = '600 22px Inter';
+        ctx.font = '600 60px Inter';
         ctx.fillStyle = '#ffffff';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'bottom';
         ctx.shadowColor = 'rgba(0, 0, 0, 0.6)';
         ctx.shadowBlur = 8;
-        ctx.fillText(branchName, canvas.width / 2, canvas.height - 480);
+        ctx.fillText(branchName, canvas.width / 2, canvas.height * 0.21);
         ctx.shadowBlur = 0;
     }
     return canvas;

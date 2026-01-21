@@ -335,8 +335,8 @@
 <script>
 /* ================= CONFIG ================= */
 const FRAME_URL = '/frame.png';
-const CANVAS_WIDTH = 600;
-const CANVAS_HEIGHT = 600;
+const CANVAS_WIDTH = 1600;
+const CANVAS_HEIGHT = 1600;
 
 const MAX_NAME_LENGTH = 19;
 // বাংলা / emoji / English correct character count
@@ -400,6 +400,17 @@ function showNotification(message, type='success', duration=3000){
     setTimeout(()=>notification.classList.remove('show'), duration);
 }
 
+/* ================= BUTTON STATE ================= */
+function updateButtonState() {
+    const hasPhoto = !!uploadedImage;
+    const hasName = nameInput.value.trim().length > 0;
+    const enable = hasPhoto && hasName;
+
+    downloadBtn.disabled = !enable;
+    resetBtn.disabled = !enable;
+    shareBtn.disabled = !enable;
+}
+
 /* ================= NAME LIVE PREVIEW ================= */
 nameInput.addEventListener('input', ()=>{
     const value = nameInput.value.trim();
@@ -411,16 +422,26 @@ nameInput.addEventListener('input', ()=>{
     }
 });
 
-/* ================= BUTTON STATE ================= */
-function updateButtonState() {
-    const hasPhoto = !!uploadedImage;
-    const hasName = nameInput.value.trim().length > 0;
-    const enable = hasPhoto && hasName;
+nameInput.addEventListener('input', () => {
+    let value = nameInput.value;
 
-    downloadBtn.disabled = !enable;
-    resetBtn.disabled = !enable;
-    shareBtn.disabled = !enable;
-}
+    // correct character count (বাংলা সহ)
+    if (getCharCount(value) > MAX_NAME_LENGTH) {
+        value = trimToMaxChars(value, MAX_NAME_LENGTH);
+        nameInput.value = value;
+        showNotification('নাম সর্বোচ্চ 19 অক্ষরের হতে পারবে', 'info');
+    }
+
+    value = value.trim();
+
+    if (value) {
+        nameOverlay.textContent = value;
+        nameOverlay.style.display = 'block';
+    } else {
+        nameOverlay.style.display = 'none';
+    }
+    updateButtonState();
+});
 
 /* ================= IMAGE UPLOAD ================= */
 function handleFileUpload(file){
@@ -440,7 +461,6 @@ function handleFileUpload(file){
             userPhoto.src = uploadedImage.src;
             userPhoto.style.display='block';
             placeholder.style.display='none';
-            enableButtons();
             showNotification('Photo loaded');
             updateButtonState();
         };
@@ -511,20 +531,20 @@ async function createFramedImage(){
     // frame FIRST
     ctx.drawImage(frameImage, 0, 0, canvas.width, canvas.height);
 
-    // ✅ NAME LAST (MOST IMPORTANT FIX)
+    //  NAME LAST (MOST IMPORTANT FIX)
     const name =
         nameOverlay.style.display !== 'none'
             ? nameOverlay.textContent.trim()
             : '';
 
     if(name){
-        ctx.font = '700 28px Inter';
+        ctx.font = '700 75px Inter';
         ctx.fillStyle = '#ffffff';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'bottom';
         ctx.shadowColor = 'rgba(0,0,0,0.6)';
         ctx.shadowBlur = 8;
-        ctx.fillText(name, canvas.width / 2, canvas.height - 80);
+        ctx.fillText(name, canvas.width / 2, canvas.height * 0.86);
         ctx.shadowBlur = 0;
     }
 
@@ -579,27 +599,6 @@ function trimToMaxChars(str, max) {
         .map(seg => seg.segment)
         .join('');
 }
-
-nameInput.addEventListener('input', () => {
-    let value = nameInput.value;
-
-    // correct character count (বাংলা সহ)
-    if (getCharCount(value) > MAX_NAME_LENGTH) {
-        value = trimToMaxChars(value, MAX_NAME_LENGTH);
-        nameInput.value = value;
-        showNotification('নাম সর্বোচ্চ ২০ অক্ষরের হতে পারবে', 'info');
-    }
-
-    value = value.trim();
-
-    if (value) {
-        nameOverlay.textContent = value;
-        nameOverlay.style.display = 'block';
-    } else {
-        nameOverlay.style.display = 'none';
-    }
-    updateButtonState();
-});
 
 </script>
 
