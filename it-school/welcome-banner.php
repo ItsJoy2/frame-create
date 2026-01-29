@@ -20,7 +20,7 @@
         .frame-container {
             position: relative;
             width: 600px;
-            height: 560px;
+            height: 600px;
             max-width: 100%;
             background: #1a1a1a;
             border-radius: 16px;
@@ -30,10 +30,10 @@
         
         .user-photo-layer {
             position: absolute;
-            top: 43%;
-            left: 28%;
-            width: 46%;
-            height: 66%;
+            top: 44%;
+            left: 35%;
+            width: 31%;
+            height: 31%;
             /* object-fit: cover ensures the image covers the container */
             object-fit: cover; 
             object-position: center;
@@ -69,19 +69,22 @@
         }
         .name-overlay {
             position: absolute;
-            bottom: 70px;
+            bottom: 75px;
             width: 100%;
             text-align: center;
-            font-size: 28px;
+            font-size: 30px;
             font-weight: 700;
-            color: #ffffff;
+            color: #21256f;
             text-shadow: 0 3px 8px rgba(0,0,0,0.6);
             z-index: 3;
             pointer-events: none;
         }
         .branchOverlay{
             position: absolute;
-            top: 15%;
+            bottom: 50px; 
+            font-size: 17px; 
+            display:none; 
+            color: #21256f;
 
         }
         
@@ -164,14 +167,14 @@
 
             <!-- Left: Logo & Title -->
             <div class="flex items-center space-x-3">
-                <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-lg">
-                    <img src="/favicon.png" alt="Logo" class="w-8 h-8 transition-transform hover:scale-110">
+                <div class="w-7 h-7 bg-white rounded-xl flex items-center justify-center shadow-lg">
+                    <img src="/favicon.png" alt="Logo" class="w-4 h-4 transition-transform hover:scale-110">
                 </div>
                 <div>
-                    <h1 class="text-xl md:text-2xl font-bold text-white leading-tight">
+                    <h1 class="text-xl md:text-xl font-bold text-white leading-tight">
                         Edulife Frame Creator
                     </h1>
-                    <p class="text-purple-200 text-xs md:text-sm">
+                    <p class="text-purple-200 text-sm md:text-sm">
                         Your photo behind our frame
                     </p>
                 </div>
@@ -179,22 +182,35 @@
 
             <!-- Center: Navigation -->
             <nav class="hidden md:flex space-x-8 font-medium">
+                <!-- Anniversary (normal link) -->
                 <a href="/index.php" class="relative text-white px-1 py-1 group">
-                    Home
+                    Anniversary
                     <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-purple-400 transition-all group-hover:w-full"></span>
                 </a>
-                <!-- <a href="" class="relative text-white px-1 py-1 group">
-                    Kids
-                    <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-purple-400 transition-all group-hover:w-full"></span>
-                </a> -->
-                <a href="/it-school.php" class="relative text-white px-1 py-1 group">
-                    IT School
-                    <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-purple-400 transition-all group-hover:w-full"></span>
-                </a>
-                <!-- <a href="" class="relative text-white px-1 py-1 group">
-                    Agency
-                    <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-purple-400 transition-all group-hover:w-full"></span>
-                </a> -->
+
+                <!-- IT School Dropdown -->
+                <div class="relative group">
+                    <button class="text-white px-1 py-1 flex items-center space-x-1 focus:outline-none">
+                        <span>IT School</span>
+                        <i class="fas fa-chevron-down text-xs"></i>
+                    </button>
+                    <div class="absolute left-0 mt-2 w-44 bg-white rounded-lg shadow-lg opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-300 z-50">
+                        <a href="/it-school/welcome-banner.php" class="block px-4 py-2 text-gray-800 hover:bg-purple-100">Welcome Banner</a>
+                        <a href="/it-school/social-banner.php" class="block px-4 py-2 text-gray-800 hover:bg-purple-100">Social Banner</a>
+                    </div>
+                </div>
+
+                <!-- After School Dropdown -->
+                <div class="relative group">
+                    <button class="text-white px-1 py-1 flex items-center space-x-1 focus:outline-none">
+                        <span>After School</span>
+                        <i class="fas fa-chevron-down text-xs"></i>
+                    </button>
+                    <div class="absolute left-0 mt-2 w-44 bg-white rounded-lg shadow-lg opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-300 z-50">
+                        <a href="/after-school/welcome-banner.php" class="block px-4 py-2 text-gray-800 hover:bg-purple-100">Welcome Banner</a>
+                        <!-- <a href="/after-school/social-banner.php" class="block px-4 py-2 text-gray-800 hover:bg-purple-100">Social Banner</a> -->
+                    </div>
+                </div>
             </nav>
 
             <!-- Right: Social -->
@@ -221,16 +237,16 @@
                 <div class="flex flex-col items-center">
 
                     <div class="frame-container mb-6" id="frameContainer">
-                        <div id="branchOverlay" class="name-overlay branchOverlay" style="bottom: 120px; font-size: 22px; display:none;"></div>
+                        <div id="branchOverlay" class="name-overlay branchOverlay"></div>
 
                         <img id="userPhoto" class="user-photo-layer" style="display: none;">
                         
-                        <img id="frameOverlay" class="frame-overlay" src="/it-school.png" alt="Frame" crossorigin="anonymous">
+                        <img id="frameOverlay" class="frame-overlay" src="/it-school/welcome-banner.png" alt="Frame" crossorigin="anonymous">
                         
                         <div id="placeholder" class="absolute inset-0 flex flex-col items-center justify-center text-white z-10">
-                            <img src="https://i.ibb.co.com/R4b2kHxh/istockphoto-2014684899-612x612.jpg" alt="Upload Photo" class="w-24 h-24 mb-4 opacity-50 rounded-lg object-cover" style="margin-top: 150px;">
-                            <p class="text-md opacity-75">Your photo will appear here</p>
-                            <p class="text-sm opacity-50 mt-2">Behind the frame</p>
+                            <img src="https://i.ibb.co.com/R4b2kHxh/istockphoto-2014684899-612x612.jpg" alt="Upload Photo" class="w-20 h-20 mb-4 opacity-50 rounded-lg object-cover" style="margin-top: 110px;">
+                            <p class="text-md opacity-75" style="font-size: 12px;">Your photo will appear here</p>
+                            <p class="text-sm opacity-50" style="font-size: 10px;">Behind the frame</p>
                         </div>
                         <div id="nameOverlay" class="name-overlay" style="display:none;">
                             Kids Name
@@ -257,14 +273,14 @@
                     <div class="glass-card rounded-2xl p-6">
                         <h3 class="text-xl font-bold text-white mb-4">
                             <i class="fas fa-building text-blue-400 mr-2"></i>
-                            Select Branch
+                            Select Campus
                         </h3>
                         <select id="branchSelect" class="w-full px-4 py-3 rounded-xl bg-white/20 text-white placeholder-purple-200 focus:outline-none focus:ring-2 focus:ring-purple-400" required>
-                            <option class="text-black" value="" disabled selected>Select a branch</option>
-                            <option class="text-black" value="Khagrachari Branch">Khagrachari Branch</option>
-                            <option class="text-black" value="Matiranga Branch">Matiranga Branch</option>
-                            <option class="text-black" value="Guimara Branch">Guimara Branch</option>
-                            <option class="text-black" value="Laxmichari Branch">Laxmichari Branch</option>
+                            <option class="text-black" value="" disabled selected>Select a Campus</option>
+                            <option class="text-black" value="Khagrachari Campus">Khagrachari Campus</option>
+                            <option class="text-black" value="Matiranga Campus">Matiranga Campus</option>
+                            <option class="text-black" value="Guimara Campus">Guimara Campus</option>
+                            <option class="text-black" value="Laxmichari Campus">Laxmichari Campus</option>
                         </select>
                     </div>
 
@@ -353,15 +369,54 @@
         </div>
     </div>
 
+
+
+<!-- CROP MODAL -->
+<div id="cropModal" class="fixed inset-0 bg-black/70 hidden z-50 flex items-center justify-center">
+    <div class="bg-white rounded-xl p-4 w-[420px]">
+        <h3 class="text-lg font-semibold mb-2 text-center">Crop Photo</h3>
+
+        <canvas id="cropCanvas" width="400" height="400"
+                class="border rounded mb-3 cursor-move"></canvas>
+
+        <input type="range" id="cropZoom" min="1" max="3" step="0.01" value="1"
+               class="w-full mb-3">
+
+        <div class="flex gap-2">
+            <button id="cropConfirm"
+                    class="flex-1 bg-purple-600 text-white py-2 rounded">
+                Confirm
+            </button>
+            <button id="cropCancel"
+                    class="flex-1 bg-gray-300 py-2 rounded">
+                Cancel
+            </button>
+        </div>
+    </div>
+</div>
+
+
+
+    
 <script>
 /* ================= CONFIG ================= */
-const FRAME_URL = '/it-school.png';
+const FRAME_URL = '/it-school/welcome-banner.png';
 const CANVAS_WIDTH = 1600;
 const CANVAS_HEIGHT = 1600;
 
 const MAX_NAME_LENGTH = 20;
 // বাংলা / emoji / English correct character count
 const segmenter = new Intl.Segmenter('bn', { granularity: 'grapheme' });
+
+/* ================= CROP STATE ================= */
+let cropImg = null;
+let cropScale = 1;
+let cropX = 0;
+let cropY = 0;
+let cropDragging = false;
+let cropStartX = 0;
+let cropStartY = 0;
+
 
 /* ================= DOM ================= */
 const fileInput = document.getElementById('fileInput');
@@ -381,6 +436,14 @@ const nameOverlay = document.getElementById('nameOverlay');
 const branchSelect = document.getElementById('branchSelect');
 const branchOverlay = document.getElementById('branchOverlay');
 
+const cropModal = document.getElementById('cropModal');
+const cropCanvas = document.getElementById('cropCanvas');
+const cropCtx = cropCanvas.getContext('2d');
+const cropZoom = document.getElementById('cropZoom');
+const cropConfirm = document.getElementById('cropConfirm');
+const cropCancel = document.getElementById('cropCancel');
+
+
 
 /* ================= STATE ================= */
 let uploadedImage = null;
@@ -389,10 +452,10 @@ let frameLoaded = false;
 
 /* ================= PHOTO AREA (CSS EXACT MATCH) ================= */
 const PHOTO_AREA = {
-    x: CANVAS_WIDTH * 0.28,      // left: 28%
-    y: CANVAS_HEIGHT * 0.43,     // top: 43%
-    width: CANVAS_WIDTH * 0.46,  // width: 46%
-    height: CANVAS_HEIGHT * 0.66 // height: 66%
+    x: CANVAS_WIDTH * 0.34,      // left: 44%
+    y: CANVAS_HEIGHT * 0.44,     // top: 25%
+    width: CANVAS_WIDTH * 0.32,  // width: 31%
+    height: CANVAS_HEIGHT * 0.32 // height: 31%
 };
 
 /* ================= INIT ================= */
@@ -439,9 +502,9 @@ nameInput.addEventListener('input', ()=>{
 
 /* ================= BUTTON STATE ================= */
 function updateButtonState() {
-    const hasPhoto = !!uploadedImage;
+    const hasPhoto = uploadedImage && uploadedImage.src && uploadedImage.src.startsWith('data:image');
     const hasName = nameInput.value.trim().length > 0;
-    const hasBranch = branchSelect.value.trim().length > 0;
+    const hasBranch = branchSelect.value && branchSelect.value.trim().length > 0;
     const enable = hasPhoto && hasName && hasBranch;
 
     downloadBtn.disabled = !enable;
@@ -484,6 +547,31 @@ nameInput.addEventListener('input', () => {
 });
 
 /* ================= IMAGE UPLOAD ================= */
+// function handleFileUpload(file){
+//     if(!file || !file.type.startsWith('image/')){
+//         showNotification('Invalid image file','error');
+//         return;
+//     }
+//     if(file.size > 10*1024*1024){
+//         showNotification('Max 10MB allowed','error');
+//         return;
+//     }
+
+//     const reader = new FileReader();
+//     reader.onload = e=>{
+//         uploadedImage = new Image();
+//         uploadedImage.onload = ()=>{
+//             userPhoto.src = uploadedImage.src;
+//             userPhoto.style.display='block';
+//             placeholder.style.display='none';
+//             showNotification('Photo loaded');
+//             updateButtonState();
+//         };
+//         uploadedImage.src = e.target.result;
+//     };
+//     reader.readAsDataURL(file);
+// }
+
 function handleFileUpload(file){
     if(!file || !file.type.startsWith('image/')){
         showNotification('Invalid image file','error');
@@ -496,19 +584,90 @@ function handleFileUpload(file){
 
     const reader = new FileReader();
     reader.onload = e=>{
-        uploadedImage = new Image();
-        uploadedImage.onload = ()=>{
-            userPhoto.src = uploadedImage.src;
-            userPhoto.style.display='block';
-            placeholder.style.display='none';
-            showNotification('Photo loaded');
-            updateButtonState();
-        };
-        uploadedImage.src = e.target.result;
+        cropImg = new Image();
+        cropImg.onload = openCropModal;
+        cropImg.src = e.target.result;
     };
     reader.readAsDataURL(file);
 }
 
+
+
+function openCropModal(){
+    cropModal.classList.remove('hidden');
+
+    cropCanvas.width = 400;
+    cropCanvas.height = 400;
+
+    cropScale = 1;
+    cropX = 0;
+    cropY = 0;
+    cropZoom.value = 1;
+
+    drawCrop();
+}
+
+function drawCrop(){
+    cropCtx.clearRect(0,0,400,400);
+
+    const iw = cropImg.width * cropScale;
+    const ih = cropImg.height * cropScale;
+
+    cropCtx.drawImage(cropImg, cropX, cropY, iw, ih);
+}
+
+cropCanvas.addEventListener('mousedown', e=>{
+    cropDragging = true;
+    cropStartX = e.offsetX - cropX;
+    cropStartY = e.offsetY - cropY;
+});
+
+cropCanvas.addEventListener('mousemove', e=>{
+    if(!cropDragging) return;
+    cropX = e.offsetX - cropStartX;
+    cropY = e.offsetY - cropStartY;
+    drawCrop();
+});
+
+document.addEventListener('mouseup', ()=>{
+    cropDragging = false;
+});
+
+cropZoom.addEventListener('input', ()=>{
+    cropScale = parseFloat(cropZoom.value);
+    drawCrop();
+});
+
+cropConfirm.onclick = () => {
+    const out = document.createElement('canvas');
+    out.width = 1200;
+    out.height = 1200;
+
+    out.getContext('2d').drawImage(
+        cropCanvas,
+        0, 0, 400, 400,
+        0, 0, 1200, 1200
+    );
+
+    uploadedImage = new Image();
+    uploadedImage.onload = () => {
+        // Preview update
+        userPhoto.src = uploadedImage.src;
+        userPhoto.style.display = 'block';
+        placeholder.style.display = 'none';
+
+        // ✅ crop confirm দেওয়ার সাথে সাথে button update
+        updateButtonState();
+
+        showNotification('Photo cropped');
+    };
+
+    uploadedImage.src = out.toDataURL();
+    cropModal.classList.add('hidden');
+};
+    cropCancel.onclick = ()=>{
+        cropModal.classList.add('hidden');
+    };
 
 /* ================= RESET ================= */
 function resetApplication(){
@@ -519,6 +678,8 @@ function resetApplication(){
     nameInput.value='';
     nameOverlay.style.display='none';
     fileInput.value='';
+    branchSelect.value = '';
+    branchOverlay.style.display = 'none'; 
     updateButtonState();
     showNotification('Reset done','info');
 }
@@ -584,8 +745,8 @@ async function createFramedImage(){
             : '';
 
     if(name){
-        ctx.font = '700 75px Inter';
-        ctx.fillStyle = '#ffffff';
+        ctx.font = '700 92px Inter';
+        ctx.fillStyle = '#21256f';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'bottom';
         ctx.shadowColor = 'rgba(0,0,0,0.6)';
@@ -594,13 +755,13 @@ async function createFramedImage(){
         ctx.shadowBlur = 0;
     }
     if(branchName){
-        ctx.font = '600 60px Inter';
-        ctx.fillStyle = '#ffffff';
+        ctx.font = '600 40px Inter';
+        ctx.fillStyle = '#21256f';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'bottom';
         ctx.shadowColor = 'rgba(0, 0, 0, 0.6)';
         ctx.shadowBlur = 8;
-        ctx.fillText(branchName, canvas.width / 2, canvas.height * 0.21);
+        ctx.fillText(branchName, canvas.width / 2, canvas.height - 155);
         ctx.shadowBlur = 0;
     }
     return canvas;

@@ -30,11 +30,8 @@
         
         .user-photo-layer {
             position: absolute;
-            top: 43%;
-            left: 28%;
-            width: 46%;
-            height: 66%;
-            /* object-fit: cover ensures the image covers the container */
+            width: 100%;
+            height: 90%;
             object-fit: cover; 
             object-position: center;
             z-index: 1;
@@ -66,18 +63,6 @@
         .upload-zone.dragover {
             border-color: #fbbf24;
             background: rgba(251, 191, 36, 0.1);
-        }
-        .name-overlay {
-            position: absolute;
-            bottom: 70px;
-            width: 100%;
-            text-align: center;
-            font-size: 28px;
-            font-weight: 700;
-            color: #ffffff;
-            text-shadow: 0 3px 8px rgba(0,0,0,0.6);
-            z-index: 3;
-            pointer-events: none;
         }
 
         
@@ -231,15 +216,12 @@
                     <div class="frame-container mb-6" id="frameContainer">
                         <img id="userPhoto" class="user-photo-layer" style="display: none;">
                         
-                        <img id="frameOverlay" class="frame-overlay" src="/frame.png" alt="Frame" crossorigin="anonymous">
+                        <img id="frameOverlay" class="frame-overlay" src="/it-school/social-banner.png" alt="Frame" crossorigin="anonymous">
                         
                         <div id="placeholder" class="absolute inset-0 flex flex-col items-center justify-center text-white z-10">
                             <img src="https://i.ibb.co.com/R4b2kHxh/istockphoto-2014684899-612x612.jpg" alt="Upload Photo" class="w-24 h-24 mb-4 opacity-50 rounded-lg object-cover" style="margin-top: 150px;">
                             <p class="text-md opacity-75">Your photo will appear here</p>
                             <p class="text-sm opacity-50 mt-2">Behind the frame</p>
-                        </div>
-                        <div id="nameOverlay" class="name-overlay" style="display:none;">
-                            Your Name
                         </div>
                     </div>
                     
@@ -260,14 +242,6 @@
                 </div>
 
                 <div class="space-y-6">
-                    <div class="glass-card rounded-2xl p-6">
-                        <h3 class="text-xl font-bold text-white mb-4">
-                            <i class="fas fa-user text-blue-400 mr-2"></i>
-                            Your Name
-                        </h3>
-                        <input type="text" id="nameInput" maxlength="19" placeholder="Write Your Name" class="w-full px-4 py-3 rounded-xl bg-white/20 text-white placeholder-purple-200 focus:outline-none focus:ring-2 focus:ring-purple-400" required>
-                    </div>
-
                     <div class="upload-zone rounded-2xl p-8 text-center cursor-pointer" id="uploadZone">
                         <input type="file" id="fileInput" accept="image/*" class="hidden">
                         <div class="mb-4">
@@ -283,56 +257,6 @@
                             Supports: JPG, PNG, GIF, WebP (Max 10MB)
                         </p>
                     </div>
-
-                    <!-- <div class="glass-card rounded-2xl p-6">
-                        <h3 class="text-xl font-bold text-white mb-4">
-                            <i class="fas fa-info-circle text-blue-400 mr-2"></i>
-                            How It Works
-                        </h3>
-                        <div class="space-y-3 text-purple-100">
-                            <div class="flex items-start">
-                                <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs mr-3 mt-0.5">1</span>
-                                <span>Upload your photo (any size)</span>
-                            </div>
-                            <div class="flex items-start">
-                                <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs mr-3 mt-0.5">2</span>
-                                <span>Your photo appears as background</span>
-                            </div>
-                            <div class="flex items-start">
-                                <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs mr-3 mt-0.5">3</span>
-                                <span>Frame overlay shows on top</span>
-                            </div>
-                            <div class="flex items-start">
-                                <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs mr-3 mt-0.5">4</span>
-                                <span>Download or share your creation</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="glass-card rounded-2xl p-6">
-                        <h3 class="text-xl font-bold text-white mb-4">
-                            <i class="fas fa-star text-yellow-400 mr-2"></i>
-                            Features
-                        </h3>
-                        <ul class="space-y-3 text-purple-100">
-                            <li class="flex items-start">
-                                <i class="fas fa-layer-group text-green-400 mr-3 mt-1"></i>
-                                <span><strong>Layered Design:</strong> Photo behind frame overlay</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-expand text-green-400 mr-3 mt-1"></i>
-                                <span><strong>Auto-fit:</strong> Adjusts any photo size</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-magic text-green-400 mr-3 mt-1"></i>
-                                <span><strong>Instant Preview:</strong> See results immediately</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-download text-green-400 mr-3 mt-1"></i>
-                                <span><strong>High Quality:</strong> Download in full resolution</span>
-                            </li>
-                        </ul>
-                    </div> -->
                 </div>
             </div>
         </div>
@@ -347,13 +271,20 @@
 
 <script>
 /* ================= CONFIG ================= */
-const FRAME_URL = '/frame.png';
+const FRAME_URL = '/it-school/social-banner.png';
 const CANVAS_WIDTH = 1600;
 const CANVAS_HEIGHT = 1600;
 
 const MAX_NAME_LENGTH = 19;
 // বাংলা / emoji / English correct character count
 const segmenter = new Intl.Segmenter('bn', { granularity: 'grapheme' });
+
+const PHOTO_AREA = {
+    x: 0,
+    y: 400,
+    width: 1600,
+    height: 1200
+};
 
 /* ================= DOM ================= */
 const fileInput = document.getElementById('fileInput');
@@ -368,21 +299,12 @@ const shareBtn = document.getElementById('shareBtn');
 const notification = document.getElementById('notification');
 const notificationText = document.getElementById('notificationText');
 const notificationIcon = document.getElementById('notificationIcon');
-const nameInput = document.getElementById('nameInput');
-const nameOverlay = document.getElementById('nameOverlay');
 
 /* ================= STATE ================= */
 let uploadedImage = null;
 let frameImage = null;
 let frameLoaded = false;
 
-/* ================= PHOTO AREA (CSS EXACT MATCH) ================= */
-const PHOTO_AREA = {
-    x: CANVAS_WIDTH * 0.28,      // left: 28%
-    y: CANVAS_HEIGHT * 0.43,     // top: 43%
-    width: CANVAS_WIDTH * 0.46,  // width: 46%
-    height: CANVAS_HEIGHT * 0.66 // height: 66%
-};
 
 /* ================= INIT ================= */
 document.addEventListener('DOMContentLoaded', () => {
@@ -416,45 +338,12 @@ function showNotification(message, type='success', duration=3000){
 /* ================= BUTTON STATE ================= */
 function updateButtonState() {
     const hasPhoto = !!uploadedImage;
-    const hasName = nameInput.value.trim().length > 0;
-    const enable = hasPhoto && hasName;
+    const enable = hasPhoto;
 
     downloadBtn.disabled = !enable;
     resetBtn.disabled = !enable;
     shareBtn.disabled = !enable;
 }
-
-/* ================= NAME LIVE PREVIEW ================= */
-nameInput.addEventListener('input', ()=>{
-    const value = nameInput.value.trim();
-    if(value){
-        nameOverlay.textContent = value;
-        nameOverlay.style.display = 'block';
-    }else{
-        nameOverlay.style.display = 'none';
-    }
-});
-
-nameInput.addEventListener('input', () => {
-    let value = nameInput.value;
-
-    // correct character count (বাংলা সহ)
-    if (getCharCount(value) > MAX_NAME_LENGTH) {
-        value = trimToMaxChars(value, MAX_NAME_LENGTH);
-        nameInput.value = value;
-        showNotification('নাম সর্বোচ্চ 19 অক্ষরের হতে পারবে', 'info');
-    }
-
-    value = value.trim();
-
-    if (value) {
-        nameOverlay.textContent = value;
-        nameOverlay.style.display = 'block';
-    } else {
-        nameOverlay.style.display = 'none';
-    }
-    updateButtonState();
-});
 
 /* ================= IMAGE UPLOAD ================= */
 function handleFileUpload(file){
@@ -489,8 +378,6 @@ function resetApplication(){
     userPhoto.src='';
     userPhoto.style.display='none';
     placeholder.style.display='flex';
-    nameInput.value='';
-    nameOverlay.style.display='none';
     fileInput.value='';
     updateButtonState();
     showNotification('Reset done','info');
@@ -543,23 +430,6 @@ async function createFramedImage(){
 
     // frame FIRST
     ctx.drawImage(frameImage, 0, 0, canvas.width, canvas.height);
-
-    //  NAME LAST (MOST IMPORTANT FIX)
-    const name =
-        nameOverlay.style.display !== 'none'
-            ? nameOverlay.textContent.trim()
-            : '';
-
-    if(name){
-        ctx.font = '700 75px Inter';
-        ctx.fillStyle = '#ffffff';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'bottom';
-        ctx.shadowColor = 'rgba(0,0,0,0.6)';
-        ctx.shadowBlur = 8;
-        ctx.fillText(name, canvas.width / 2, canvas.height * 0.86);
-        ctx.shadowBlur = 0;
-    }
 
     return canvas;
 }
