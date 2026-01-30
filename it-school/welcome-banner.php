@@ -379,7 +379,7 @@
         <canvas id="cropCanvas" width="400" height="400"
                 class="border rounded mb-3 cursor-move"></canvas>
 
-        <input type="range" id="cropZoom" min="1" max="3" step="0.01" value="1"
+        <input type="range" id="cropZoom" min="0.1" max="3" step="0.01" value="1"
                class="w-full mb-3">
 
         <div class="flex gap-2">
