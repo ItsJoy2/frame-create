@@ -186,7 +186,16 @@
                     Anniversary
                     <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-purple-400 transition-all group-hover:w-full"></span>
                 </a>
-
+                <!-- IT And Skill Dropdown -->
+                <div class="relative group">
+                    <button class="text-white px-1 py-1 flex items-center space-x-1 focus:outline-none">
+                        <span>IT & Skill</span>
+                        <i class="fas fa-chevron-down text-xs"></i>
+                    </button>
+                    <div class="absolute left-0 mt-2 w-44 bg-white rounded-lg shadow-lg opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-300 z-50">
+                        <a href="/it-and-skill/welcome-banner.php" class="block px-4 py-2 text-gray-800 hover:bg-purple-100">Welcome Banner</a>
+                    </div>
+                </div>
                 <!-- IT School Dropdown -->
                 <div class="relative group">
                     <button class="text-white px-1 py-1 flex items-center space-x-1 focus:outline-none">

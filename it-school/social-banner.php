@@ -165,7 +165,16 @@
                     Anniversary
                     <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-purple-400 transition-all group-hover:w-full"></span>
                 </a>
-
+                <!-- IT And Skill Dropdown -->
+                <div class="relative group">
+                    <button class="text-white px-1 py-1 flex items-center space-x-1 focus:outline-none">
+                        <span>IT & Skill</span>
+                        <i class="fas fa-chevron-down text-xs"></i>
+                    </button>
+                    <div class="absolute left-0 mt-2 w-44 bg-white rounded-lg shadow-lg opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-300 z-50">
+                        <a href="/it-and-skill/welcome-banner.php" class="block px-4 py-2 text-gray-800 hover:bg-purple-100">Welcome Banner</a>
+                    </div>
+                </div>
                 <!-- IT School Dropdown -->
                 <div class="relative group">
                     <button class="text-white px-1 py-1 flex items-center space-x-1 focus:outline-none">
@@ -268,6 +277,31 @@
             <span id="notificationText">Success!</span>
         </div>
     </div>
+
+
+    <!-- CROP MODAL -->
+<div id="cropModal" class="fixed inset-0 bg-black/70 hidden z-50 flex items-center justify-center">
+    <div class="bg-white rounded-xl p-4 w-[420px]">
+        <h3 class="text-lg font-semibold mb-2 text-center">Crop Photo</h3>
+
+        <canvas id="cropCanvas" width="400" height="400"
+                class="border rounded mb-3 cursor-move"></canvas>
+
+        <input type="range" id="cropZoom" min="0.1" max="3" step="0.01" value="1"
+               class="w-full mb-3">
+
+        <div class="flex gap-2">
+            <button id="cropConfirm"
+                    class="flex-1 bg-purple-600 text-white py-2 rounded">
+                Confirm
+            </button>
+            <button id="cropCancel"
+                    class="flex-1 bg-gray-300 py-2 rounded">
+                Cancel
+            </button>
+        </div>
+    </div>
+</div>
 
 <script>
 /* ================= CONFIG ================= */
