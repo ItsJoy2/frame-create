@@ -22,7 +22,7 @@
             width: 100%;
             max-width: 900px;
 
-            aspect-ratio: 14 / 9;
+            aspect-ratio: 13 / 9;
 
             background: #1a1a1a;
             border-radius: 16px;
@@ -149,7 +149,7 @@
             .frame-container {
                 width: 100%;
                 height: auto;
-                aspect-ratio: 14/9;
+                aspect-ratio: 13/9;
             }
         }
     </style>
@@ -243,7 +243,7 @@
                         <img id="frameOverlay" class="frame-overlay" src="/special-days/5-august.png" alt="Frame" crossorigin="anonymous">
                         
                         <div id="placeholder" class="absolute inset-0 flex flex-col items-center justify-center text-white z-10">
-                            <img src="https://i.ibb.co.com/R4b2kHxh/istockphoto-2014684899-612x612.jpg" alt="Upload Photo" class="w-24 h-24 mb-4 opacity-50 rounded-lg object-cover" style="margin-top: 150px;">
+                            <img src="https://i.ibb.co.com/R4b2kHxh/istockphoto-2014684899-612x612.jpg" alt="Upload Photo" class="w-24 h-24 mb-4 opacity-50 rounded-lg object-cover">
                             <p class="text-md opacity-75">Your photo will appear here</p>
                             <p class="text-sm opacity-50 mt-2">Behind the frame</p>
                         </div>
