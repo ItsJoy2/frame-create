@@ -19,31 +19,47 @@
         
         .frame-container {
             position: relative;
-            width: 600px;
-            height: 600px;
-            max-width: 100%;
+            width: 100%;
+            max-width: 900px;
+
+            aspect-ratio: 14 / 9;
+
             background: #1a1a1a;
             border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,.25);
+        }
+        .user-photo-layer{
+            position:absolute;
+            inset:0;
+
+            width:100%;
+            height:100%;
+
+            object-fit:cover;
+            object-position:center;
+
+            z-index:1;
+
+            cursor:grab;
+        }
+
+        .user-photo-layer:active{
+            cursor:grabbing;
         }
         
-        .user-photo-layer {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            object-fit: fill;
-            z-index: 1;
-        }
-        
-        .frame-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 2;
-            pointer-events: none;
+        .frame-overlay{
+            position:absolute;
+            inset:0;
+
+            width:100%;
+            height:100%;
+
+            object-fit:cover;
+
+            z-index:2;
+
+            pointer-events:none;
         }
         
         .upload-zone {
@@ -133,7 +149,7 @@
             .frame-container {
                 width: 100%;
                 height: auto;
-                aspect-ratio: 1/1;
+                aspect-ratio: 14/9;
             }
         }
     </style>
@@ -284,11 +300,11 @@
 
     <!-- CROP MODAL -->
 <div id="cropModal" class="fixed inset-0 bg-black/70 hidden z-50 flex items-center justify-center">
-    <div class="bg-white rounded-xl p-4 w-[420px] max-w-[calc(100vw-2rem)]">
+    <div class="bg-white rounded-xl p-4 w-[660px] max-w-[calc(100vw-3rem)]">
         <h3 class="text-lg font-semibold mb-1 text-center">Crop & Position Photo</h3>
         <p class="text-sm text-gray-500 mb-3 text-center">Drag to position, then use the slider to zoom.</p>
 
-        <canvas id="cropCanvas" width="400" height="400"
+        <canvas id="cropCanvas" width="640" height="360"
                 class="border rounded mb-3 cursor-move"></canvas>
 
         <input type="range" id="cropZoom" min="0.1" max="3" step="0.01" value="1"
@@ -310,7 +326,7 @@
 <script>
 /* ================= CONFIG ================= */
 const FRAME_URL = '/special-days/5-august.png';
-const CANVAS_WIDTH = 1600;
+const CANVAS_WIDTH = 2370;
 const CANVAS_HEIGHT = 1600;
 
 const MAX_NAME_LENGTH = 19;
@@ -320,7 +336,7 @@ const segmenter = new Intl.Segmenter('bn', { granularity: 'grapheme' });
 const PHOTO_AREA = {
     x: 0,
     y: 0,
-    width: 1600,
+    width: 2370,
     height: 1600
 };
 
