@@ -78,7 +78,7 @@
             bottom: 75px;
             width: 100%;
             text-align: center;
-            font-size: 30px;
+            font-size: 33px;
             font-weight: 700;
             color: #21256f;
             text-shadow: 0 3px 8px rgba(0,0,0,0.6);
@@ -87,8 +87,8 @@
         }
         .branchOverlay{
             position: absolute;
-            bottom: 50px; 
-            font-size: 17px; 
+            bottom: 48px; 
+            font-size: 20px; 
             display:none; 
             color: #21256f;
 
@@ -760,7 +760,7 @@ async function createFramedImage(){
             : '';
 
     if(name){
-        ctx.font = '700 92px Inter, SolaimanLipi, sans-serif';
+        ctx.font = '700 93px Inter, SolaimanLipi, sans-serif';
         ctx.fillStyle = '#21256f';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'bottom';
@@ -770,7 +770,7 @@ async function createFramedImage(){
         ctx.shadowBlur = 0;
     }
     if(branchName){
-        ctx.font = '600 40px Inter, SolaimanLipi, sans-serif';
+        ctx.font = '600 45px Inter, SolaimanLipi, sans-serif';
         ctx.fillStyle = '#21256f';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'bottom';
