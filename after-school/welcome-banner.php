@@ -10,9 +10,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        @font-face {
+            font-family: 'SolaimanLipi';
+            src: url('../fonts/SolaimanLipi.ttf') format('truetype');
+            unicode-range: U+0980-09FF;
+        }
         
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', 'SolaimanLipi', sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
         }
@@ -285,10 +291,10 @@
                         </h3>
                         <select id="branchSelect" class="w-full px-4 py-3 rounded-xl bg-white/20 text-white placeholder-purple-200 focus:outline-none focus:ring-2 focus:ring-purple-400" required>
                             <option class="text-black" value="" disabled selected>Select a Campus</option>
-                            <option class="text-black" value="Khagrachari Campus">Khagrachari Campus</option>
-                            <option class="text-black" value="Matiranga Campus">Matiranga Campus</option>
-                            <option class="text-black" value="Guimara Campus">Guimara Campus</option>
-                            <option class="text-black" value="Laxmichari Campus">Laxmichari Campus</option>
+                            <option class="text-black" value="খাগড়াছড়ি ক্যাম্পাস">খাগড়াছড়ি ক্যাম্পাস</option>
+                            <option class="text-black" value="মাটিরাঙা ক্যাম্পাস">মাটিরাঙা ক্যাম্পাস</option>
+                            <option class="text-black" value="গুইমারা ক্যাম্পাস">গুইমারা ক্যাম্পাস</option>
+                            <option class="text-black" value="লক্ষ্মীছড়ি ক্যাম্পাস">লক্ষ্মীছড়ি ক্যাম্পাস</option>
                         </select>
                     </div>
 
@@ -678,7 +684,7 @@ async function createFramedImage(){
             : '';
 
     if(name){
-        ctx.font = '700 90px Inter';
+        ctx.font = '700 90px Inter, SolaimanLipi, sans-serif';
         ctx.fillStyle = '#21256f';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'bottom';
@@ -688,7 +694,7 @@ async function createFramedImage(){
         ctx.shadowBlur = 0;
     }
     if(branchName){
-        ctx.font = '600 39px Inter';
+        ctx.font = '600 39px Inter, SolaimanLipi, sans-serif';
         ctx.fillStyle = '#21256f';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'bottom';

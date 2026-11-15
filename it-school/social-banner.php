@@ -10,9 +10,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        @font-face {
+            font-family: 'SolaimanLipi';
+            src: url('../fonts/SolaimanLipi.ttf') format('truetype');
+            unicode-range: U+0980-09FF;
+        }
         
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', 'SolaimanLipi', sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
         }
